@@ -1,18 +1,16 @@
 # Saturn-To-Neo-Geo-Controller-Adapter
-This is for an adapter that will convert a Sega Saturn controller to work on a Neo Geo.
+This is for an adapter that will convert a Sega Saturn controller to work on a Neo Geo. Code is still in a testing to get up and working so phase so it isn't as clean as Id like. 
 
-Code is still in a testing get up and working so phase so it isn't as clean as Id like. 
-
-###### Current features include 
+## Current features include 
 - Actually working, sending Saturn data to the Neo Geo
 - Button remapping
 
-###### Future plans
+## Future plans
 - Rapid fire, current started.
 - Change from digitalWrite to the bitwise way, I forget the name.
 - Saving config
 
-###### The stock button config is:
+## The stock button config is:
 - A = A
 - X = B
 - Y = C
