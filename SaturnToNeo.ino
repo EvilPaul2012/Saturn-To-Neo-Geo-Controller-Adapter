@@ -30,7 +30,7 @@ int buttonConfig[9]={A,B,C,X,Y,Z,L,R,ST};
 int rapidFireConfig[9]={0,0,0,0,0,0,0,0,0};
 int buttonIndex = 0;
 int rapidConfigTimer = 0;
-
+ 
 void setup()
 {
   // Delay for hot plug issue
@@ -61,6 +61,22 @@ void setup()
   // Declares Select Pins as outputs.
   pinMode(S0, OUTPUT);          
   pinMode(S1, OUTPUT);
+}
+
+void FlashLED(bool reverse = false)
+{
+    if(!reverse)
+    {
+      digitalWrite(reproLED_Pin, LOW);     // turn the LED off by making the voltage LOW
+      delay(500);                          // wait for a second
+      digitalWrite(reproLED_Pin, HIGH);    // turn the LED on by making the voltage HIGH
+    }
+    else
+    {
+      digitalWrite(reproLED_Pin, HIGH);     // turn the LED on by making the voltage HIGH
+      delay(500);                           // wait for a second
+      digitalWrite(reproLED_Pin, LOW);     // turn the LED off by making the voltage LOW
+    }
 }
 
 void loop()
@@ -95,6 +111,7 @@ void loop()
     if(DN == 1)
     {
       //Serial.println("Send - Down");
+      //FlashLED(true);
       digitalWrite(6, LOW); 
     }
     else
@@ -104,6 +121,7 @@ void loop()
     if(UP == 1)
     {
       //Serial.println("Send - Up");
+      //FlashLED(true);
       digitalWrite(5, LOW); 
     }
     else
@@ -113,6 +131,7 @@ void loop()
     if(LT == 1)
     {
       //Serial.println("Send - Left");
+      //FlashLED(true);
       digitalWrite(7, LOW); 
     }
     else
@@ -122,6 +141,7 @@ void loop()
     if(RT == 1)
     {
       //Serial.println("Send - Right");
+      //FlashLED(true);
       digitalWrite(8, LOW); 
     }
     else
@@ -134,6 +154,7 @@ void loop()
       if(A == 1)
       {
         //Serial.println("Send - A");
+        //FlashLED(true);
         digitalWrite(buttonConfig[0], LOW); 
       }
       else
@@ -146,6 +167,7 @@ void loop()
       if(B == 1)
       {
         //Serial.println("Send - K2");
+        //FlashLED(true);
         digitalWrite(buttonConfig[1], LOW); 
       }
       else
@@ -158,6 +180,7 @@ void loop()
       if(C == 1)
       {
         //Serial.println("Send - K3");
+        //FlashLED(true);
         digitalWrite(buttonConfig[2], LOW); 
       }
       else
@@ -170,6 +193,7 @@ void loop()
       if(X == 1)
       {
         //Serial.println("Send - B");
+        //FlashLED(true);
         digitalWrite(buttonConfig[3], LOW); 
       }
       else
@@ -182,6 +206,7 @@ void loop()
       if(Y == 1)
       {
         //Serial.println("Send - C");
+        //FlashLED(true);
         digitalWrite(buttonConfig[4], LOW); 
       }
       else
@@ -194,6 +219,7 @@ void loop()
       if(Z == 1)
       {
         //Serial.println("Send - D");
+        //FlashLED(true);
         digitalWrite(buttonConfig[5], LOW); 
       }
       else
@@ -206,6 +232,7 @@ void loop()
       if(L == 1)
       {
         //Serial.println("Send - L");
+        //FlashLED(true);
         digitalWrite(buttonConfig[6], LOW); 
       }
       else
@@ -218,6 +245,7 @@ void loop()
       if(R == 1)
       {
         //Serial.println("Send - R");
+        //FlashLED(true);
         digitalWrite(buttonConfig[7], LOW); 
       }
       else
@@ -230,6 +258,7 @@ void loop()
       if(ST == 1)
       {
         //Serial.println("Send - Start");
+        //FlashLED(true);
         digitalWrite(buttonConfig[8], LOW); 
       }
       else
@@ -472,9 +501,9 @@ void CaptureReprogramInput()
       buttonIndex++;
     }
     
-    if(buttonIndex == 8)
+    if(buttonIndex >= 8)
     {
-      rapidConfigEnabled = false;
+      reprogrammingEnabled = false;
       //buttonIndex = 0;
       digitalWrite(reproLED_Pin, LOW); 
     }
@@ -501,7 +530,7 @@ void CheckForRapid()
 void ToggleRapidFire()
 {
     if(rapidConfigEnabled)
-      reutrn;
+      return;
   
     rapidConfigTimer++;
     
@@ -556,11 +585,4 @@ void ToggleRapidFire()
       rapidConfigEnabled = false;
       digitalWrite(reproLED_Pin, LOW); 
     }
-}
-
-void FlashLED()
-{
-    digitalWrite(reproLED_Pin, LOW);    // turn the LED off by making the voltage LOW
-    delay(500);                       // wait for a second
-    digitalWrite(reproLED_Pin, HIGH);    // turn the LED off by making the voltage LOW
 }
