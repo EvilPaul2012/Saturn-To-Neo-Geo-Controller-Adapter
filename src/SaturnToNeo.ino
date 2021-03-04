@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 // variables for all the buttons
 int UP = 5;   // pin 15 - Up
 int DN = 6;   // pin 7 - Down
